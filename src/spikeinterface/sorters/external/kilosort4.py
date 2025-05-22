@@ -95,7 +95,7 @@ class Kilosort4Sorter(BaseSorter):
             # we skip some parameters that are not relevant for the user
             # n_chan_bin/sampling_frequency: retrieved from the recording
             # tmin/tmax: same ase time/frame_slice in SpikeInterface
-            skip_main = ["n_chan_bin", "sampling_frequency", "tmin", "tmax"]
+            skip_main = ["sampling_frequency", "tmin", "tmax"]
             default_params = {}
             default_params_descriptions = {}
             ks_params = ks.parameters.MAIN_PARAMETERS.copy()
@@ -260,7 +260,6 @@ class Kilosort4Sorter(BaseSorter):
         save_preprocessed_copy = params["save_preprocessed_copy"]
         progress_bar = None
         settings_ks = {k: v for k, v in params.items() if k in DEFAULT_SETTINGS}
-        settings_ks["n_chan_bin"] = recording.get_num_channels()
         settings_ks["fs"] = recording.sampling_frequency
         if not do_CAR:
             if verbose:
